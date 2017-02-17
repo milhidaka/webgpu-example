@@ -22,12 +22,12 @@ window.onload = function () {
   pipelineState = gpu.createRenderPipelineState(pipelineDescriptor);
 
 
-let vertexData = new Float32Array([
+  vertexData = new Float32Array([
     // x y z 1 r g b 1
     0, 0.75, 0, 1, 1, 0, 0, 1,
     -0.75, -0.75, 0, 1, 0, 1, 0, 1,
     0.75, -0.75, 0, 1, 0, 0, 1, 1
-]);
+  ]);
   vertexBuffer = gpu.createBuffer(vertexData);
 
   drawable = gpu.nextDrawable();
@@ -39,29 +39,29 @@ let vertexData = new Float32Array([
   passDescriptor.colorAttachments[0].texture = drawable.texture;
 
   let commandQueue = gpu.createCommandQueue();
-let commandBuffer = commandQueue.createCommandBuffer();
+  let commandBuffer = commandQueue.createCommandBuffer();
 
-// Use the descriptor we created above.
-let commandEncoder = commandBuffer.createRenderCommandEncoderWithDescriptor(
-                        passDescriptor);
+  // Use the descriptor we created above.
+  let commandEncoder = commandBuffer.createRenderCommandEncoderWithDescriptor(
+    passDescriptor);
 
-// Tell the encoder which state to use (i.e. shaders).
-commandEncoder.setRenderPipelineState(pipelineState);
+  // Tell the encoder which state to use (i.e. shaders).
+  commandEncoder.setRenderPipelineState(pipelineState);
 
-// And, lastly, the encoder needs to know which buffer
-// to use for the geometry.
-commandEncoder.setVertexBuffer(vertexBuffer, 0, 0);
+  // And, lastly, the encoder needs to know which buffer
+  // to use for the geometry.
+  commandEncoder.setVertexBuffer(vertexBuffer, 0, 0);
 
-// We know our buffer has three vertices. We want to draw them
-// with filled triangles.
-// first 3: PrimitiveTypeTriangle
-commandEncoder.drawPrimitives(3, 0, 3);
-commandEncoder.endEncoding();
+  // We know our buffer has three vertices. We want to draw them
+  // with filled triangles.
+  // first 3: PrimitiveTypeTriangle
+  commandEncoder.drawPrimitives(3, 0, 3);
+  commandEncoder.endEncoding();
 
-// All drawing commands have been submitted. Tell WebGPU to
-// show/present the results in the canvas once the queue has
-// been processed.
-commandBuffer.presentDrawable(drawable);
-commandBuffer.commit();
+  // All drawing commands have been submitted. Tell WebGPU to
+  // show/present the results in the canvas once the queue has
+  // been processed.
+  commandBuffer.presentDrawable(drawable);
+  commandBuffer.commit();
 
 }
