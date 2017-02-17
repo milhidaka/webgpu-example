@@ -17,8 +17,7 @@ window.onload = function () {
   pipelineDescriptor = new WebGPURenderPipelineDescriptor();
   pipelineDescriptor.vertexFunction = vertexFunction;
   pipelineDescriptor.fragmentFunction = fragmentFunction;
-  // Source/WebCore/html/canvas/WebGPURenderingContext.idl const unsigned int PixelFormatBGRA8Unorm = 80;
-  pipelineDescriptor.colorAttachments[0].pixelFormat = 80;
+  pipelineDescriptor.colorAttachments[0].pixelFormat = gpu.PixelFormatBGRA8Unorm;
   pipelineState = gpu.createRenderPipelineState(pipelineDescriptor);
 
 
@@ -33,8 +32,8 @@ window.onload = function () {
   drawable = gpu.nextDrawable();
 
   passDescriptor = new WebGPURenderPassDescriptor();
-  passDescriptor.colorAttachments[0].loadAction = 2;//LoadActionClear
-  passDescriptor.colorAttachments[0].storeAction = 1;//StoreActionStore
+  passDescriptor.colorAttachments[0].loadAction = gpu.LoadActionClear;
+  passDescriptor.colorAttachments[0].storeAction = gpu.StoreActionStore;
   passDescriptor.colorAttachments[0].clearColor = [0.2, 0.8, 0.8, 1.0];
   passDescriptor.colorAttachments[0].texture = drawable.texture;
 
@@ -54,8 +53,7 @@ window.onload = function () {
 
   // We know our buffer has three vertices. We want to draw them
   // with filled triangles.
-  // first 3: PrimitiveTypeTriangle
-  commandEncoder.drawPrimitives(3, 0, 3);
+  commandEncoder.drawPrimitives(gpu.PrimitiveTypeTriangle, 0, 3);
   commandEncoder.endEncoding();
 
   // All drawing commands have been submitted. Tell WebGPU to

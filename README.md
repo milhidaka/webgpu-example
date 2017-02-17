@@ -50,8 +50,5 @@ http://localhost:8000/
 公式サンプルでは
 `passDescriptor.colorAttachments[0].loadAction = "clear";`
 などのように、文字列で設定を行う箇所がいくつかありますが、これは動きませんでした。
-パッチ内を文字列検索してみると、`const unsigned int LoadActionClear = 2;`
-という定数があったので、`passDescriptor.colorAttachments[0].loadAction = 2;`
-と書き換えると動作しました。その他の文字列利用部分も同じです。
-もしかしたら整数をいきなり書く必要はなく、モジュールのどこかからこれらの定数がエクスポートされているかもしれません。
-WebKitのモジュールの仕組みに疎いので、わかる方がいれば教えてください。
+`passDescriptor.colorAttachments[0].loadAction = gpu.LoadActionClear;`
+と書き換えると動作しました(`gpu=canvas.getContext("webgpu");`)。その他の文字列利用部分も同じです。
