@@ -2,10 +2,14 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Canvas</title>
+    <title>WebGPU Example</title>
     <script src="canvas.js"></script>
   </head>
   <body>
+  <h1>WebGPU Example</h1>
+  <div>
+  If your browser supports <a href="https://webkit.org/blog/7380/next-generation-3d-graphics-on-the-web/">WebGPU</a>, a triangle should be rendered below.
+  </div>
     <canvas id="mycanvas" width="320" height="240" style="border: solid 3px #000;"></canvas>
         <script id="library" type="x-shader/x-metal">
     using namespace metal;
@@ -36,6 +40,10 @@ fragment float4 fragment_main(Vertex vert [[stage_in]]) {
       <li>https://webkit.org/blog/7380/next-generation-3d-graphics-on-the-web/</li>
       <li>https://www.gaprot.jp/pickup/tips/metalkit</li>
     </ul>
+    </div>
+    <hr>
+    <div>
+    <a href="https://github.com/milhidaka/webgpu-example">https://github.com/milhidaka/webgpu-example</a>
     </div>
   </body>
 </html>

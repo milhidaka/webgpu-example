@@ -10,7 +10,12 @@ Mac OS X El Capitan以降
 
 今のところ、WebGPUはMetalをベースとしているためMac以外では試せません。
 
+
 # WebKitのビルド
+[Safari Technology Preview 26](https://webkit.org/blog/7474/release-notes-for-safari-technology-preview-26/)ではWebGPUが組み込まれているので、独自のビルドが不要となりました。
+
+以下の説明は古くなっております。
+
 事前にXcodeのインストールが必要ですので、 https://webkit.org/build-tools/ を参考に入れておきます。
 
 以下の順にコマンドを叩くことで、WebGPUパッチを当てた状態のWebKitがビルドできます。
@@ -34,11 +39,7 @@ cd Tools/Scripts/
 ```
 
 # サンプルの実行
-このリポジトリをcloneして、適当なHTTPサーバをローカルに立ててSafariから`canvas.html`にアクセスすればサンプルが実行できます。
-
-Python2系なら`python -m SimpleHTTPServer`、Python3系なら`python -m http.server`が手軽です。
-http://localhost:8000/
-コマンドを実行したディレクトリの中身が、上のURLでアクセスできるようになります。
+https://milhidaka.github.io/webgpu-example/
 
 環境構築がうまくいっていれば、以下のような画面になるはずです。
 
